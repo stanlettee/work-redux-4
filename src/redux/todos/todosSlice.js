@@ -89,9 +89,9 @@ const todosSlice = createSlice({
     });
     builder.addCase(deleteTodo.fulfilled, (state, action) => {
       console.log(action.payload)
-      const newArr = state.todos.filter(todo => todo.id !== action.payload.id)
-      // console.log(newArr)
-      state.todos = newArr
+      todosAdapter.removeOne(state, action.payload.id)
+      // const newArr = state.todos.filter(todo => todo.id !== action.payload.id)
+      // state.todos = newArr
       state.loading = false;
     });
     builder.addCase(deleteTodo.rejected, (state, action) => {
